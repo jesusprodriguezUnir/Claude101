@@ -1,0 +1,288 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const weeks = [
+  {
+    number: 1,
+    title: 'Fundamentos y Primeros Pasos',
+    module: 'Meet Claude',
+    topics: ['¿Qué es Claude?', 'Tu primera conversación'],
+    resources: [
+      { title: 'Guía completa de Claude', url: 'https://santiagocosme.com/guia-completa-de-claude/', type: 'article' },
+      { title: 'Cómo usar Claude AI desde cero', url: 'https://noticiasdeprimera.com/tecnologia/como-usar-claude-ai-desde-cero/', type: 'article' },
+      { title: 'Tutorial Claude AI en Español', url: 'https://www.youtube.com/watch?v=qth5wFHKDV8', type: 'video' },
+      { title: 'Guía para Dummies', url: 'https://aprendergratis.es/inteligencia-artificial/guia-claude-ia-para-dummies-tutorial/', type: 'article' }
+    ],
+    practices: [
+      'Regista tu cuenta en claude.ai',
+      'Realiza tus primeras 5 preguntas simples',
+      'Practica subiendo archivos y pidiendo resúmenes'
+    ]
+  },
+  {
+    number: 2,
+    title: 'Escritura de Prompts y Mejores Resultados',
+    module: 'Getting better results',
+    topics: ['Técnicas de prompting', 'Contexto y claridad'],
+    resources: [
+      { title: '48 prompts por categoría', url: 'https://santiagocosme.com/guia-completa-de-claude/', type: 'article' },
+      { title: 'Guía TecnoAprendiz', url: 'https://tecnoaprendiz.com/tutoriales/ia/guia-completa-para-usar-claude-ia-en-2025-desde-cero-hasta-experto/', type: 'article' },
+      { title: 'Tutorial Eduky - Prompts', url: 'https://eduky.blog/claude-ai-tutorial-completo-comparativa-vs-chatgpt-y-guia-de-uso-profesional/', type: 'article' }
+    ],
+    practices: [
+      'Misión Resumen: Sube un documento y pídele un resumen simple',
+      'Misión Clonación: Pega 3 correos tuyos y crea una plantilla',
+      'Misión Auditoría: Pídele que analice un texto tuyo'
+    ]
+  },
+  {
+    number: 3,
+    title: 'App de Escritorio, Cowork y Modelos',
+    module: 'Claude desktop app',
+    topics: ['Chat, Cowork, Code', 'Modelos Opus/Sonnet/Haiku'],
+    resources: [
+      { title: 'Guía de registro - Titikey', url: 'https://www.titikey.com/es/article/article-1771974034601', type: 'article' },
+      { title: 'Todo sobre Claude - AprendiendoIA', url: 'https://www.aprendiendoia.co/p/absolutamente-todo-lo-que-necesitas', type: 'article' },
+      { title: 'Guía Didi - App y Cowork', url: 'https://didi.com.bo/blog/claude-guia-principiantes/', type: 'article' }
+    ],
+    practices: [
+      'Descarga la app de escritorio de Claude',
+      'Instala Claude Cowork y dale acceso a una carpeta',
+      'Experimenta con los 3 modelos principales'
+    ]
+  },
+  {
+    number: 4,
+    title: 'Organización — Proyectos y Artefactos',
+    module: 'Projects, Artifacts & Skills',
+    topics: ['Proyectos', 'Artefactos', 'Skills'],
+    resources: [
+      { title: 'AprendiendoIA - Projects', url: 'https://www.aprendiendoia.co/p/absolutamente-todo-lo-que-necesitas', type: 'article' },
+      { title: 'Santiago Cosme - 6 funciones', url: 'https://santiagocosme.com/guia-completa-de-claude/', type: 'article' },
+      { title: 'Guía Didi - Artefactos', url: 'https://didi.com.bo/blog/claude-guia-principiantes/', type: 'article' }
+    ],
+    practices: [
+      'Crea tu primer Proyecto con un manual de estilo',
+      'Usa Artefactos para generar código o documentos',
+      'Experimenta creando un Skill'
+    ]
+  },
+  {
+    number: 5,
+    title: 'Integraciones y Expansión',
+    module: 'Connecting your tools',
+    topics: ['Enterprise search', 'Research mode', 'Conectores'],
+    resources: [
+      { title: 'AprendiendoIA - Connectors', url: 'https://www.aprendiendoia.co/p/absolutamente-todo-lo-que-necesitas', type: 'article' },
+      { title: 'Guía eesel AI', url: 'https://www.eesel.ai/es/blog/claude-ai-productivity-assistant', type: 'article' },
+      { title: 'Santiago Cosme - Cowork', url: 'https://santiagocosme.com/guia-completa-de-claude/', type: 'article' }
+    ],
+    practices: [
+      'Configura un conector (Gmail, Drive, etc.)',
+      'Explora la extensión de Chrome o Slack',
+      'Usa el modo de investigación para un tema'
+    ]
+  },
+  {
+    number: 6,
+    title: 'Casos de Uso y Proyecto Final',
+    module: 'Claude in action',
+    topics: ['Casos por rol', ' Otras formas de trabajar', 'Certificado'],
+    resources: [
+      { title: 'Santiago Cosme - Rutas por situación', url: 'https://santiagocosme.com/guia-completa-de-claude/', type: 'article' },
+      { title: 'Comparativa Claude vs ChatGPT', url: 'https://eduky.blog/claude-ai-tutorial-completo-comparativa-vs-chatgpt-y-guia-de-uso-profesional/', type: 'article' },
+      { title: 'Tutorial Lilys.ai (4h)', url: 'https://lilys.ai/es/notes/claude-code-20260106/claude-ai-tutorial-spanish-2025', type: 'video' }
+    ],
+    practices: [
+      'Aplica Claude a una tarea real de tu día a día',
+      'Revisa el glosario de términos',
+      'Repasa los temas donde te sientas menos seguro'
+    ]
+  }
+];
+---
+
+<Layout title="Plan de Estudio - Claude 101">
+
+  <!-- ═══ HERO ═══ -->
+  <section class="relative overflow-hidden py-20 sm:py-28">
+    <!-- Ambient glow -->
+    <div class="absolute inset-0 bg-mesh-amber pointer-events-none"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-amber-500/[0.04] rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="flex flex-col items-center text-center">
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-amber-500/20 bg-amber-500/5 text-amber-400 text-sm font-medium mb-8 animate-fade-in">
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+          6 semanas · 100% en español
+        </div>
+
+        <!-- Title -->
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 animate-fade-in" style="animation-delay:0.1s">
+          Plan de Estudio<br/>
+          <span class="bg-gradient-to-r from-amber-400 via-amber-500 to-orange-500 bg-clip-text text-transparent">Claude 101</span>
+        </h1>
+
+        <!-- Subtitle terminal -->
+        <div class="font-mono text-sm text-gray-500 mb-10 animate-fade-in" style="animation-delay:0.25s">
+          <span class="text-amber-500">$</span> dominar claude-ai <span class="text-terminal-green">--lang</span> es <span class="text-terminal-green">--weeks</span> 6
+        </div>
+
+        <!-- CTA -->
+        <a href="#estructura" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-semibold shadow-lg shadow-amber-500/20 hover:shadow-amber-500/30 transition-all duration-300 animate-fade-in" style="animation-delay:0.35s" id="cta-empezar">
+          Empezar el curso
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </a>
+      </div>
+
+      <!-- Stats bento -->
+      <div class="grid grid-cols-3 gap-3 sm:gap-4 mt-16 max-w-2xl mx-auto">
+        <div class="glow-card bg-carbon-800 border border-white/[0.06] rounded-2xl p-5 text-center animate-fade-in stagger-1">
+          <div class="text-3xl sm:text-4xl font-bold text-amber-400 mb-1">6</div>
+          <div class="text-xs sm:text-sm text-gray-500">Semanas</div>
+        </div>
+        <div class="glow-card bg-carbon-800 border border-white/[0.06] rounded-2xl p-5 text-center animate-fade-in stagger-2">
+          <div class="text-3xl sm:text-4xl font-bold text-amber-400 mb-1">12+</div>
+          <div class="text-xs sm:text-sm text-gray-500">Recursos</div>
+        </div>
+        <div class="glow-card bg-carbon-800 border border-white/[0.06] rounded-2xl p-5 text-center animate-fade-in stagger-3">
+          <div class="text-3xl sm:text-4xl font-bold text-amber-400 mb-1">18+</div>
+          <div class="text-xs sm:text-sm text-gray-500">Ejercicios</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ESTRUCTURA DEL CURSO ═══ -->
+  <section id="estructura" class="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+    <div class="flex items-center gap-3 mb-10 observe-fade">
+      <div class="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center">
+        <span class="text-amber-500 text-sm font-bold font-mono">#</span>
+      </div>
+      <h2 class="text-2xl font-bold tracking-tight">Estructura del Curso</h2>
+    </div>
+
+    <div class="space-y-4">
+      {weeks.map((week, i) => (
+        <details class="group observe-fade rounded-2xl border border-white/[0.06] bg-carbon-800 overflow-hidden transition-all duration-300 hover:border-white/[0.1]" style={`transition-delay:${i * 60}ms`} id={`week-${week.number}`}>
+          <summary class="flex items-center justify-between p-5 sm:p-6 cursor-pointer select-none">
+            <div class="flex items-center gap-4">
+              <!-- Terminal dots + number -->
+              <div class="relative w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-amber-600 to-amber-800 flex items-center justify-center font-bold text-white text-lg shadow-lg shadow-amber-500/10">
+                {week.number}
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-white">{week.title}</h3>
+                <p class="text-sm text-gray-500 font-mono">{week.module}</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="text-xs text-gray-600 hidden sm:inline font-mono">{week.topics.length} temas</span>
+              <span class="w-8 h-8 rounded-lg bg-white/[0.04] flex items-center justify-center group-open:rotate-180 transition-transform duration-300">
+                <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </span>
+            </div>
+          </summary>
+
+          <div class="border-t border-white/[0.06] p-5 sm:p-6 bg-carbon-900">
+            <!-- Terminal header bar -->
+            <div class="flex items-center gap-2 mb-5">
+              <span class="w-2.5 h-2.5 rounded-full bg-terminal-red/60"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-terminal-yellow/60"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-terminal-green/60"></span>
+              <span class="text-[11px] text-gray-600 font-mono ml-2">semana-{week.number}.sh</span>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+              <!-- Temas -->
+              <div>
+                <h4 class="font-semibold mb-3 text-sm flex items-center gap-2 text-amber-400">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                  Temas
+                </h4>
+                <ul class="space-y-2">
+                  {week.topics.map((topic) => (
+                    <li class="flex items-start gap-2 text-sm text-gray-400">
+                      <span class="text-amber-500/60 mt-0.5 font-mono text-xs">▸</span>
+                      {topic}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <!-- Recursos -->
+              <div>
+                <h4 class="font-semibold mb-3 text-sm flex items-center gap-2 text-terminal-blue">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+                  Recursos
+                </h4>
+                <ul class="space-y-2">
+                  {week.resources.map((resource) => (
+                    <li>
+                      <a href={resource.url} target="_blank" rel="noopener noreferrer"
+                         class="text-sm text-gray-400 hover:text-amber-400 flex items-center gap-2 transition-colors group/link">
+                        <span class={`text-xs px-1.5 py-0.5 rounded font-mono ${resource.type === 'video' ? 'bg-red-500/10 text-red-400' : 'bg-terminal-blue/10 text-terminal-blue'}`}>
+                          {resource.type === 'video' ? '▶' : '◆'}
+                        </span>
+                        <span class="group-hover/link:underline underline-offset-2">{resource.title}</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <!-- Práctica -->
+              <div>
+                <h4 class="font-semibold mb-3 text-sm flex items-center gap-2 text-terminal-green">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  Práctica
+                </h4>
+                <ul class="space-y-2">
+                  {week.practices.map((practice) => (
+                    <li class="flex items-start gap-2 text-sm text-gray-400">
+                      <span class="text-terminal-green mt-0.5 font-mono text-xs">✓</span>
+                      {practice}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <!-- ═══ RECURSOS COMPLEMENTARIOS ═══ -->
+  <section class="border-t border-white/[0.06] py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <h2 class="text-2xl font-bold mb-8 observe-fade">Recursos Complementarios</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <a href="https://www.aprendiendoia.co/" target="_blank" class="glow-card bg-carbon-800 border border-white/[0.06] rounded-2xl p-5 observe-fade stagger-1" id="rec-aprendiendoia">
+          <div class="text-2xl mb-3">📚</div>
+          <h3 class="font-semibold text-white">AprendiendoIA</h3>
+          <p class="text-sm text-gray-500 mt-1">Germán Martínez</p>
+        </a>
+        <a href="https://www.youtube.com/watch?v=qth5wFHKDV8" target="_blank" class="glow-card bg-carbon-800 border border-white/[0.06] rounded-2xl p-5 observe-fade stagger-2" id="rec-tutorial">
+          <div class="text-2xl mb-3">🎬</div>
+          <h3 class="font-semibold text-white">Tutorial YouTube</h3>
+          <p class="text-sm text-gray-500 mt-1">Juan & Lucia</p>
+        </a>
+        <a href="https://santiagocosme.com/guia-completa-de-claude/" target="_blank" class="glow-card bg-carbon-800 border border-white/[0.06] rounded-2xl p-5 observe-fade stagger-3" id="rec-cosme">
+          <div class="text-2xl mb-3">📝</div>
+          <h3 class="font-semibold text-white">Santiago Cosme</h3>
+          <p class="text-sm text-gray-500 mt-1">Guía completa</p>
+        </a>
+        <a href="https://docs.anthropic.com/" target="_blank" class="glow-card bg-carbon-800 border border-white/[0.06] rounded-2xl p-5 observe-fade stagger-4" id="rec-docs">
+          <div class="text-2xl mb-3">📘</div>
+          <h3 class="font-semibold text-white">Docs Oficiales</h3>
+          <p class="text-sm text-gray-500 mt-1">Anthropic (inglés)</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>

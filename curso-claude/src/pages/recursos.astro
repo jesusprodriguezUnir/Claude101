@@ -1,0 +1,114 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const resources = [
+  {
+    category: 'Artículos en Español',
+    icon: '📄',
+    items: [
+      { title: 'Guía completa de Claude - Santiago Cosme', url: 'https://santiagocosme.com/guia-completa-de-claude/', author: 'Santiago Cosme', type: 'complete-guide' },
+      { title: 'Todo sobre Claude - AprendiendoIA', url: 'https://www.aprendiendoia.co/p/absolutamente-todo-lo-que-necesitas', author: 'Germán Martínez', type: 'complete-guide' },
+      { title: 'Cómo usar Claude AI desde cero', url: 'https://noticiasdeprimera.com/tecnologia/como-usar-claude-ai-desde-cero/', author: 'Lobito Isaias', type: 'beginner' },
+      { title: 'Guía completa TecnoAprendiz', url: 'https://tecnoaprendiz.com/tutoriales/ia/guia-completa-para-usar-claude-ia-en-2025-desde-cero-hasta-experto/', author: 'Jose Clarke', type: 'beginner' },
+      { title: 'Guía para Dummies + Tutorial', url: 'https://aprendergratis.es/inteligencia-artificial/guia-claude-ia-para-dummies-tutorial/', author: 'AprenderGratis', type: 'dummies' },
+      { title: 'Tutorial Eduky - Uso Profesional', url: 'https://eduky.blog/claude-ai-tutorial-completo-comparativa-vs-chatgpt-y-guia-de-uso-profesional/', author: 'Eduky Blog', type: 'advanced' },
+      { title: 'Guía Didi para Principiantes', url: 'https://didi.com.bo/blog/claude-guia-principiantes/', author: 'Didi', type: 'beginner' },
+      { title: 'Guía eesel AI - Asistente Productividad', url: 'https://www.eesel.ai/es/blog/claude-ai-productivity-assistant', author: 'eesel AI', type: 'productivity' }
+    ]
+  },
+  {
+    category: 'Videos en Español',
+    icon: '🎬',
+    items: [
+      { title: 'Tutorial Completo Claude AI (2026)', url: 'https://www.youtube.com/watch?v=qth5wFHKDV8', author: 'Tutorial Por Juan & Lucia', type: 'video' },
+      { title: 'Tutorial Lilys.ai (4 horas)', url: 'https://lilys.ai/es/notes/claude-code-20260106/claude-ai-tutorial-spanish-2025', author: 'Lilys AI', type: 'video' }
+    ]
+  },
+  {
+    category: 'Guías Específicas',
+    icon: '🔧',
+    items: [
+      { title: 'Registro y Verificación - Titikey', url: 'https://www.titikey.com/es/article/article-1771974034601', author: 'Titikey', type: 'setup' }
+    ]
+  },
+  {
+    category: 'Documentación Oficial',
+    icon: '📘',
+    items: [
+      { title: 'Documentación Anthropic (Inglés)', url: 'https://docs.anthropic.com/', author: 'Anthropic', type: 'official' },
+      { title: 'Curso Claude 101 oficial', url: 'https://anthropic.skilljar.com/claude-101/383389', author: 'Anthropic', type: 'official' }
+    ]
+  }
+];
+
+const typeLabels: Record<string, { label: string; color: string }> = {
+  'complete-guide': { label: 'Guía Completa', color: 'bg-amber-500/10 text-amber-400' },
+  'beginner':       { label: 'Principiantes', color: 'bg-terminal-green/10 text-terminal-green' },
+  'advanced':       { label: 'Avanzado', color: 'bg-purple-500/10 text-purple-400' },
+  'video':          { label: 'Video', color: 'bg-red-500/10 text-red-400' },
+  'dummies':        { label: 'Dummies', color: 'bg-cyan-500/10 text-cyan-400' },
+  'productivity':   { label: 'Productividad', color: 'bg-blue-500/10 text-terminal-blue' },
+  'setup':          { label: 'Configuración', color: 'bg-yellow-500/10 text-yellow-400' },
+  'official':       { label: 'Oficial', color: 'bg-violet-500/10 text-violet-400' }
+};
+---
+
+<Layout title="Recursos - Curso Claude 101">
+  <!-- Hero -->
+  <section class="relative overflow-hidden py-16">
+    <div class="absolute inset-0 bg-mesh-amber pointer-events-none"></div>
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="font-mono text-xs text-gray-600 mb-3 animate-fade-in">
+        <span class="text-amber-500">~</span>/recursos
+      </div>
+      <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight mb-3 animate-fade-in" style="animation-delay:0.1s">
+        Recursos en <span class="text-amber-400">Español</span>
+      </h1>
+      <p class="text-gray-500 max-w-lg animate-fade-in" style="animation-delay:0.2s">Todos los recursos necesarios para aprender Claude AI</p>
+    </div>
+  </section>
+
+  <!-- Resources -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+    {resources.map((section, si) => (
+      <div class="mb-12 observe-fade" style={`transition-delay:${si * 100}ms`}>
+        <div class="flex items-center gap-3 mb-6">
+          <span class="text-xl">{section.icon}</span>
+          <h2 class="text-xl font-bold">{section.category}</h2>
+          <span class="px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-400 text-xs font-mono">{section.items.length}</span>
+        </div>
+        <div class="grid md:grid-cols-2 gap-3">
+          {section.items.map((item) => (
+            <a href={item.url} target="_blank" rel="noopener noreferrer"
+               class="glow-card bg-carbon-800 border border-white/[0.06] rounded-xl p-5 group block">
+              <div class="flex items-start justify-between gap-4">
+                <div class="flex-1 min-w-0">
+                  <div class="mb-2">
+                    <span class={`text-[11px] px-2 py-0.5 rounded-md font-mono ${typeLabels[item.type]?.color || 'bg-gray-500/10 text-gray-400'}`}>
+                      {typeLabels[item.type]?.label || item.type}
+                    </span>
+                  </div>
+                  <h3 class="font-semibold text-white text-sm group-hover:text-amber-400 transition-colors truncate">{item.title}</h3>
+                  <p class="text-xs text-gray-600 mt-1 font-mono">{item.author}</p>
+                </div>
+                <span class="text-gray-600 group-hover:text-amber-500 transition-colors text-lg shrink-0">↗</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    ))}
+  </section>
+
+  <!-- CTA -->
+  <section class="border-t border-white/[0.06] py-14">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center observe-fade">
+      <h2 class="text-2xl font-bold mb-3">¿Falta algún recurso?</h2>
+      <p class="text-gray-500 mb-6 text-sm">Ayúdanos a mejorar esta lista compartiendo recursos útiles</p>
+      <a href="https://github.com/anthropic/claude-docs" target="_blank"
+         class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-semibold shadow-lg shadow-amber-500/20 transition-all duration-300" id="cta-github">
+        Ver más en GitHub ↗
+      </a>
+    </div>
+  </section>
+</Layout>

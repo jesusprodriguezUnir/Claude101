@@ -1,0 +1,75 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const terms = [
+  { term: 'Prompt', definition: 'La instrucción o mensaje que le das a la IA. La calidad del prompt determina la calidad de la respuesta.' },
+  { term: 'Tokens', definition: 'Unidades de texto que Claude procesa. Piensa en ellos como "piezas" de palabras. Cada palabra tiene aproximadamente 1-2 tokens.' },
+  { term: 'Modelos (Opus, Sonnet, Haiku)', definition: 'Los diferentes "cerebros" de Claude. Opus = pensamiento profundo, Sonnet = equilibrado, Haiku = rápido.' },
+  { term: 'Projects (Proyectos)', definition: 'Espacios donde puedes subir documentos y contexto para que Claude te conozca mejor y trabaje de forma consistente.' },
+  { term: 'Artifacts (Artefactos)', definition: 'Ventana lateral donde Claude muestra código o documentos limpios que puedes editar o descargar.' },
+  { term: 'Skills', definition: '"Trucos" guardados que puedes activar para que Claude sepa cómo trabajar en situaciones específicas.' },
+  { term: 'Cowork', definition: 'Modo que permite a Claude acceder a tus carpetas locales y trabajar en archivos directamente.' },
+  { term: 'Connectors (Conectores)', definition: 'Integraciones que permiten a Claude leer Gmail, Google Drive, Slack, Notion y otras aplicaciones.' },
+  { term: 'MCP (Model Context Protocol)', definition: 'Tecnología que permite a Claude "hablar" con otras aplicaciones y servicios externos.' },
+  { term: 'Context Window', definition: 'La cantidad de conversación que Claude puede recordar. Si se vuelve largo, puede que olvides detalles.' },
+  { term: 'Claude.ai', definition: 'La página web principal donde puedes usar Claude directamente en el navegador.' },
+  { term: 'Pro Plan ($20/mes)', definition: 'Plan de pago que da acceso a Opus, Cowork, más límites de uso y conectores.' },
+  { term: 'Research Mode', definition: 'Modo de investigación profunda donde Claude explora un tema a fondo con múltiples búsquedas.' },
+  { term: 'Enterprise Search', definition: 'Búsqueda en documentos corporativos para equipos que usan Claude Business.' },
+  { term: 'Claude Code', definition: 'Asistente de programación que funciona desde la línea de comandos para desarrolladores.' },
+  { term: 'Free Plan', definition: 'Plan gratuito con acceso a Sonnet y Haiku, límites ajustados pero suficiente para aprender.' }
+];
+---
+
+<Layout title="Glosario - Curso Claude 101">
+  <!-- Hero -->
+  <section class="relative overflow-hidden py-16">
+    <div class="absolute inset-0 bg-mesh-amber pointer-events-none"></div>
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="font-mono text-xs text-gray-600 mb-3 animate-fade-in">
+        <span class="text-amber-500">~</span>/glosario
+      </div>
+      <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight mb-3 animate-fade-in" style="animation-delay:0.1s">
+        Glosario de <span class="text-amber-400">Términos</span>
+      </h1>
+      <p class="text-gray-500 max-w-lg animate-fade-in" style="animation-delay:0.2s">Aprende el lenguaje de Claude AI</p>
+    </div>
+  </section>
+
+  <!-- Terms -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 py-12">
+    <p class="text-gray-500 mb-8 text-sm observe-fade">
+      Términos esenciales que vas a encontrar durante el curso. Esta guía te ayudará a no perderte cuando veamos funciones avanzadas.
+    </p>
+
+    <div class="space-y-3">
+      {terms.map((item, index) => (
+        <div class="glow-card bg-carbon-800 border border-white/[0.06] rounded-xl p-5 observe-fade" style={`transition-delay:${index * 40}ms`} id={`term-${index}`}>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-400 font-bold font-mono text-sm shrink-0">
+              {String(index + 1).padStart(2, '0')}
+            </div>
+            <div>
+              <h3 class="font-semibold text-white mb-1">{item.term}</h3>
+              <p class="text-sm text-gray-400 leading-relaxed">{item.definition}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Tip box -->
+    <div class="mt-12 p-5 rounded-xl border border-amber-500/20 bg-amber-500/[0.04] observe-fade">
+      <div class="flex items-start gap-3">
+        <span class="text-amber-400 text-lg">💡</span>
+        <div>
+          <h3 class="font-semibold text-amber-400 text-sm mb-1">Tip</h3>
+          <p class="text-sm text-gray-400">
+            No necesitas memorizar todos los términos de golpe. Conforme avances en el curso y uses Claude,
+            cada uno de estos conceptos quedará claro naturalmente.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

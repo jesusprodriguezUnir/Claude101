@@ -1,0 +1,220 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Plan de estudio para prepararte para el curso Claude 101 de Anthropic' } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="es" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body class="min-h-screen bg-carbon-950 text-gray-100 font-sans antialiased">
+    
+    <!-- Navbar — Glassmorphism -->
+    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.06] bg-carbon-950/80 backdrop-blur-xl">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4">
+        <div class="flex items-center justify-between">
+          <a href="/" class="flex items-center gap-3 group" id="nav-logo">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center shadow-lg shadow-amber-500/20 group-hover:shadow-amber-500/40 transition-shadow duration-300">
+              <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M8 9l3 3-3 3m5 0h3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <h1 class="text-lg font-bold text-white tracking-tight">Claude <span class="text-amber-500">101</span></h1>
+              <p class="text-[11px] text-gray-500 font-mono tracking-wide">PLAN DE ESTUDIO</p>
+            </div>
+          </a>
+          <div class="flex items-center gap-1 text-sm">
+            <a href="/" 
+               class:list={[
+                 "px-3 py-1.5 rounded-lg transition-all duration-200",
+                 currentPath === '/' || currentPath === '' 
+                   ? "bg-amber-500/10 text-amber-400 font-medium" 
+                   : "text-gray-400 hover:text-white hover:bg-white/5"
+               ]}
+               id="nav-inicio">
+              Inicio
+            </a>
+            <a href="/recursos" 
+               class:list={[
+                 "px-3 py-1.5 rounded-lg transition-all duration-200",
+                 currentPath === '/recursos' || currentPath === '/recursos/' 
+                   ? "bg-amber-500/10 text-amber-400 font-medium" 
+                   : "text-gray-400 hover:text-white hover:bg-white/5"
+               ]}
+               id="nav-recursos">
+              Recursos
+            </a>
+            <a href="/glosario" 
+               class:list={[
+                 "px-3 py-1.5 rounded-lg transition-all duration-200",
+                 currentPath === '/glosario' || currentPath === '/glosario/' 
+                   ? "bg-amber-500/10 text-amber-400 font-medium" 
+                   : "text-gray-400 hover:text-white hover:bg-white/5"
+               ]}
+               id="nav-glosario">
+              Glosario
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Spacer for fixed nav -->
+    <div class="h-[72px]"></div>
+
+    <main>
+      <slot />
+    </main>
+
+    <!-- Footer — Terminal Style -->
+    <footer class="border-t border-white/[0.06] mt-20">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center">
+              <svg class="w-4 h-4 text-amber-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M8 9l3 3-3 3m5 0h3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <span class="text-sm text-gray-500">
+              <span class="font-mono text-amber-500/60">$</span> Plan de estudio para el curso oficial de Anthropic
+            </span>
+          </div>
+          <div class="flex items-center gap-6 text-xs text-gray-600">
+            <span class="font-mono">v1.0</span>
+            <span class="w-1 h-1 rounded-full bg-gray-700"></span>
+            <span>Recursos en español</span>
+            <span class="w-1 h-1 rounded-full bg-gray-700"></span>
+            <a href="https://docs.anthropic.com" target="_blank" rel="noopener noreferrer" 
+               class="text-gray-500 hover:text-amber-500 transition-colors">
+              docs.anthropic.com ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  /* === Selection === */
+  ::selection {
+    background: rgba(217, 119, 6, 0.3);
+    color: #fff;
+  }
+
+  /* === Custom Scrollbar === */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0c0c0c;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #2a2a2a;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3a3a3a;
+  }
+
+  /* === Smooth scroll === */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* === Staggered animation delays === */
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+  .stagger-5 { animation-delay: 0.5s; }
+  .stagger-6 { animation-delay: 0.6s; }
+
+  /* === Terminal dots === */
+  .terminal-dots::before {
+    content: '';
+    display: inline-flex;
+    gap: 6px;
+    width: 48px;
+    height: 12px;
+    background: 
+      radial-gradient(circle at 6px 6px, #f87171 4px, transparent 4px),
+      radial-gradient(circle at 22px 6px, #facc15 4px, transparent 4px),
+      radial-gradient(circle at 38px 6px, #4ade80 4px, transparent 4px);
+  }
+
+  /* === Details marker removal === */
+  details summary::-webkit-details-marker,
+  details summary::marker {
+    display: none;
+    content: '';
+  }
+
+  /* === Glow card effect === */
+  .glow-card {
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  .glow-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    box-shadow: 0 0 24px rgba(217, 119, 6, 0.1), inset 0 0 0 1px rgba(217, 119, 6, 0.15);
+    pointer-events: none;
+  }
+  .glow-card:hover::after {
+    opacity: 1;
+  }
+  .glow-card:hover {
+    border-color: rgba(217, 119, 6, 0.2) !important;
+    transform: translateY(-2px);
+  }
+
+  /* === Intersection Observer fade-in === */
+  .observe-fade {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .observe-fade.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  // Intersection Observer for scroll animations
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+  );
+
+  document.querySelectorAll('.observe-fade').forEach((el) => {
+    observer.observe(el);
+  });
+</script>
