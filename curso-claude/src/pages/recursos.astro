@@ -116,6 +116,30 @@ const resources = [
       },
     ],
   },
+  {
+    category: "Materiales del Curso",
+    icon: "🎓",
+    items: [
+      {
+        title: "Guía de Ecosistema Claude: De Chatbot a Colaborador",
+        url: "/images/guia-ecosistema-claude.png",
+        author: "Daniel Avila",
+        type: "guide",
+      },
+      {
+        title: "Manual Claude 101 (PowerPoint)",
+        url: "/docs/claude_101_manual.pptx",
+        author: "Anthropic Academy",
+        type: "presentation",
+      },
+      {
+        title: "Manual Claude 101 (Documento PDF)",
+        url: "/docs/claude_101_manual.pdf",
+        author: "Anthropic Academy",
+        type: "official",
+      },
+    ],
+  },
 ];
 
 const typeLabels: Record<string, { label: string; color: string }> = {
@@ -137,6 +161,8 @@ const typeLabels: Record<string, { label: string; color: string }> = {
   },
   setup: { label: "Configuración", color: "bg-yellow-500/10 text-yellow-400" },
   official: { label: "Oficial", color: "bg-violet-500/10 text-violet-400" },
+  guide: { label: "Guía Visual", color: "bg-emerald-500/10 text-emerald-400" },
+  presentation: { label: "Presentación", color: "bg-orange-500/10 text-orange-400" },
 };
 ---
 

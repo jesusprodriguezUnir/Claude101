@@ -59,6 +59,16 @@ const currentPath = Astro.url.pathname;
                id="nav-recursos">
               Recursos
             </a>
+            <a href="/manual" 
+               class:list={[
+                 "px-3 py-1.5 rounded-lg transition-all duration-200",
+                 currentPath === '/manual' || currentPath === '/manual/' 
+                   ? "bg-amber-500/10 text-amber-400 font-medium" 
+                   : "text-gray-400 hover:text-white hover:bg-white/5"
+               ]}
+               id="nav-manual">
+              Manual
+            </a>
             <a href="/glosario" 
                class:list={[
                  "px-3 py-1.5 rounded-lg transition-all duration-200",

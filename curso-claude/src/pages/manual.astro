@@ -1,0 +1,415 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const modules = [
+  {
+    num: '01',
+    title: 'Meet Claude',
+    lessons: [
+      {
+        name: 'Lección 1 — ¿Qué es Claude?',
+        points: [
+          'Desarrollado por Anthropic (fundada en 2021, ex-OpenAI)',
+          'Constitutional AI: entrenado para ser útil, honesto e inofensivo',
+          'Diferencias vs ChatGPT/Gemini: menos alucinaciones, mejor razonamiento largo',
+          'Sin memoria persistente entre conversaciones (salvo Projects)'
+        ]
+      },
+      {
+        name: 'Lección 2 — Primera conversación',
+        points: [
+          'Interfaz: barra de conversación, adjuntos y herramientas',
+          'Tipos de entrada: texto, imágenes, PDF, CSV, código',
+          'Cómo responde Claude: razonamiento + respuesta estructurada',
+          'Límites de contexto (ventana) y qué ocurre al alcanzarlos',
+          'Tono adaptativo: Claude ajusta el estilo al registro del prompt'
+        ]
+      }
+    ],
+    keyNote: 'Claude no tiene memoria entre sesiones a menos que uses Projects. Cada conversación empieza desde cero.'
+  },
+  {
+    num: '02',
+    title: 'Getting Better Results',
+    lessons: [
+      {
+        name: 'Lección 3 — Desktop App: tres modos de trabajo',
+        points: [
+          'Chat: Equivalente a Claude en el navegador. Disponible en Free y Pro.',
+          'Cowork: Claude ve tu pantalla y opera en tiempo real. Analiza Excel, rellena formularios.',
+          'Code: Accede y edita carpetas reales. Ejecuta tests, hace commits. Base de Claude Code.'
+        ]
+      },
+      {
+        name: 'Lección 4 — Patrón de prompting: Rol + Tarea + Contexto + Formato',
+        points: [
+          'ROL: "Actúa como consultor senior de .NET con experiencia en APIs"',
+          'TAREA: "Revisa este middleware y detecta cuellos de botella"',
+          'CONTEXTO: "Es una API REST en .NET 8 que recibe 10.000 req/seg"',
+          'FORMATO: "Lista los 3 principales problemas ordenados por severidad con ejemplo de fix"'
+        ]
+      }
+    ],
+    keyNote: null
+  },
+  {
+    num: '03',
+    title: 'Organizing Work & Knowledge',
+    lessons: [
+      {
+        name: 'Lección 5 — Projects',
+        points: [
+          'Contenedor que agrupa conversaciones + archivos + system prompt fijo',
+          'Memoria de archivos: sube una vez, disponible en todas las conversaciones',
+          'System prompt fijo: define el rol de Claude para ese contexto',
+          'Disponible en Free y Pro. Compartir requiere Teams ($30/usuario/mes)'
+        ]
+      },
+      {
+        name: 'Lección 6 — Artifacts',
+        points: [
+          'Outputs tangibles: documentos, código, tablas, diagramas Mermaid, React, HTML',
+          'Panel lateral editable con historial de versiones',
+          'Genera enlace público. React/HTML se ejecutan directamente en el navegador'
+        ]
+      },
+      {
+        name: 'Lección 7 — Skills',
+        points: [
+          'Paquetes de instrucciones + archivos + scripts que Claude carga automáticamente',
+          'Biblioteca oficial: PowerPoint, Excel, PDF, analizador de código',
+          'Skills propias: brand voice, plantillas de empresa, SOPs internos',
+          'Requieren plan Pro ($20/mes) o Teams/Enterprise'
+        ]
+      }
+    ],
+    keyNote: null
+  },
+  {
+    num: '04',
+    title: "Expanding Claude's Reach",
+    lessons: [
+      {
+        name: 'Lección 8 — Connectors (MCP)',
+        points: [
+          'Implementación Anthropic del protocolo MCP (Model Context Protocol)',
+          'Productividad: Gmail, Google Calendar, Docs, Microsoft 365, Outlook',
+          'Almacenamiento: Drive, OneDrive, Dropbox, Box, Notion',
+          'Dev & Proyectos: GitHub, Jira, Linear, Asana, Slack',
+          'Requieren plan Pro o Teams/Enterprise'
+        ]
+      },
+      {
+        name: 'Lección 9 — Enterprise Search',
+        points: [
+          'Búsqueda federada sobre todas tus fuentes conectadas en paralelo',
+          'Claude cita la fuente de cada fragmento de respuesta',
+          'Ideal para due diligence, preparación de reuniones y búsqueda de precedentes',
+          'Requiere Teams o Enterprise con Connectors configurados'
+        ]
+      },
+      {
+        name: 'Lección 10 — Research Mode',
+        points: [
+          'Claude navega la web, lee múltiples fuentes, sintetiza con citas visibles',
+          'Output más estructurado: tablas claras, secciones diferenciadas, citas explícitas',
+          'Market research, análisis de competencia, briefings técnicos, due diligence'
+        ]
+      }
+    ],
+    keyNote: null
+  },
+  {
+    num: '05',
+    title: 'Putting It All Together',
+    lessons: [
+      {
+        name: 'Lección 11 — Casos de uso por rol',
+        points: [
+          'Marketing: Skill de brand voice, calendario de contenidos, análisis de competencia',
+          'Ventas: Propuestas personalizadas, resumen de llamadas, CRM via Connectors',
+          'RRHH: Handbook en Projects, filtrado de CVs, onboarding automatizado',
+          'Finanzas: Análisis P&L con Artifacts, resumen de informes, modelos de forecast',
+          'Ingeniería: Code review, debugging, generación de tests y documentación',
+          'Operaciones: SOPs editables, automatización con Jira/Linear, informes semanales'
+        ]
+      },
+      {
+        name: 'Lección 12 — Otras formas de trabajar con Claude',
+        points: [
+          'API + Platform: Acceso directo a modelos. Precios por token.',
+          'Claude for Slack: Bot integrado. Resume threads, genera drafts.',
+          'Claude for Chrome: Asistente contextual en cualquier página web.',
+          'Bedrock / Vertex: Despliegue enterprise en AWS o GCP.'
+        ]
+      },
+      {
+        name: 'Lección 13 — Rutas de aprendizaje',
+        points: [
+          'Usuario no técnico → AI Fluency: Framework & Foundations',
+          'Developer API → Building with the Claude API',
+          'Dev en terminal → Claude Code in Action',
+          'Conectores propios → Introduction to MCP'
+        ]
+      }
+    ],
+    keyNote: null
+  }
+];
+
+const plans = [
+  { feature: 'Chat básico (web + app)', free: true, pro: true, teams: true },
+  { feature: 'Subir archivos e imágenes', free: true, pro: true, teams: true },
+  { feature: 'Projects', free: true, pro: true, teams: true },
+  { feature: 'Artifacts', free: true, pro: true, teams: true },
+  { feature: 'Desktop App — Chat', free: true, pro: true, teams: true },
+  { feature: 'Desktop App — Cowork', free: false, pro: true, teams: true },
+  { feature: 'Skills', free: false, pro: true, teams: true },
+  { feature: 'Connectors (MCP)', free: false, pro: true, teams: true },
+  { feature: 'Research Mode', free: false, pro: true, teams: true },
+  { feature: 'Enterprise Search', free: false, pro: false, teams: true },
+  { feature: 'Compartir Projects', free: false, pro: false, teams: true },
+  { feature: 'Modelos última generación', free: false, pro: true, teams: true },
+];
+
+const academyCourses = [
+  { name: 'Claude 101', badge: 'Estás aquí', tech: false },
+  { name: 'AI Fluency: Framework & Foundations', badge: null, tech: false },
+  { name: 'AI Fluency for Students', badge: null, tech: false },
+  { name: 'AI Fluency for Educators', badge: null, tech: false },
+  { name: 'Teaching AI Fluency', badge: null, tech: false },
+  { name: 'AI Fluency for Nonprofits', badge: null, tech: false },
+  { name: 'Building with the Claude API', badge: null, tech: true },
+  { name: 'Claude Code in Action', badge: null, tech: true },
+  { name: 'Introduction to Agent Skills', badge: null, tech: true },
+  { name: 'Introduction to MCP', badge: null, tech: true },
+  { name: 'MCP: Advanced Topics', badge: null, tech: true },
+  { name: 'Claude with Amazon Bedrock', badge: null, tech: true },
+  { name: 'Claude with Google Vertex AI', badge: null, tech: true },
+];
+---
+
+<Layout title="Manual Oficial — Claude 101" description="Manual completo del curso oficial Claude 101 de Anthropic Academy. 5 módulos, 13 lecciones.">
+
+  <!-- ═══ HERO ═══ -->
+  <section class="relative overflow-hidden py-20 sm:py-28">
+    <div class="absolute inset-0 bg-mesh-amber pointer-events-none"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-amber-500/[0.04] rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="flex flex-col items-center text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-violet-500/20 bg-violet-500/5 text-violet-400 text-sm font-medium mb-8 animate-fade-in">
+          <span class="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse"></span>
+          Anthropic Academy · Curso Oficial
+        </div>
+
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 animate-fade-in" style="animation-delay:0.1s">
+          Manual del Curso<br/>
+          <span class="bg-gradient-to-r from-amber-400 via-amber-500 to-orange-500 bg-clip-text text-transparent">Claude 101</span>
+        </h1>
+
+        <p class="text-gray-400 max-w-xl mb-8 animate-fade-in" style="animation-delay:0.2s">
+          Guía completa basada en el curso oficial gratuito de la Anthropic Academy.<br/>
+          5 Módulos · 13 Lecciones · Certificado oficial de Anthropic.
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-3 animate-fade-in" style="animation-delay:0.3s">
+          <a href="/docs/claude_101_manual.pdf" download class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-semibold shadow-lg shadow-amber-500/20 hover:shadow-amber-500/30 transition-all duration-300 text-sm" id="download-pdf">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            Descargar PDF
+          </a>
+          <a href="/docs/claude_101_manual.pptx" download class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-white font-semibold transition-all duration-300 text-sm" id="download-pptx">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            Descargar PPTX
+          </a>
+          <a href="https://anthropic.skilljar.com/claude-101/383389" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-violet-500/20 bg-violet-500/5 hover:bg-violet-500/10 text-violet-400 font-semibold transition-all duration-300 text-sm" id="link-academy">
+            Ir al curso en Skilljar ↗
+          </a>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-4 gap-3 sm:gap-4 mt-14 max-w-2xl mx-auto w-full">
+          <div class="glow-card bg-carbon-800 border border-white/[0.06] rounded-2xl p-4 text-center animate-fade-in stagger-1">
+            <div class="text-2xl sm:text-3xl font-bold text-amber-400 mb-1">5</div>
+            <div class="text-xs text-gray-500">Módulos</div>
+          </div>
+          <div class="glow-card bg-carbon-800 border border-white/[0.06] rounded-2xl p-4 text-center animate-fade-in stagger-2">
+            <div class="text-2xl sm:text-3xl font-bold text-amber-400 mb-1">13</div>
+            <div class="text-xs text-gray-500">Lecciones</div>
+          </div>
+          <div class="glow-card bg-carbon-800 border border-white/[0.06] rounded-2xl p-4 text-center animate-fade-in stagger-3">
+            <div class="text-2xl sm:text-3xl font-bold text-amber-400 mb-1">2-3h</div>
+            <div class="text-xs text-gray-500">Duración</div>
+          </div>
+          <div class="glow-card bg-carbon-800 border border-white/[0.06] rounded-2xl p-4 text-center animate-fade-in stagger-4">
+            <div class="text-2xl sm:text-3xl font-bold text-terminal-green mb-1">FREE</div>
+            <div class="text-xs text-gray-500">Coste</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ MÓDULOS ═══ -->
+  <section id="modulos" class="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+    <div class="flex items-center gap-3 mb-10 observe-fade">
+      <div class="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center">
+        <span class="text-amber-500 text-sm font-bold font-mono">#</span>
+      </div>
+      <h2 class="text-2xl font-bold tracking-tight">Contenido del Manual</h2>
+    </div>
+
+    <div class="space-y-4">
+      {modules.map((mod, i) => (
+        <details class="group observe-fade rounded-2xl border border-white/[0.06] bg-carbon-800 overflow-hidden transition-all duration-300 hover:border-white/[0.1]" style={`transition-delay:${i * 60}ms`} id={`mod-${mod.num}`}>
+          <summary class="flex items-center justify-between p-5 sm:p-6 cursor-pointer select-none">
+            <div class="flex items-center gap-4">
+              <div class="relative w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-violet-600 to-violet-800 flex items-center justify-center font-bold text-white text-lg shadow-lg shadow-violet-500/10 font-mono">
+                {mod.num}
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-white">{mod.title}</h3>
+                <p class="text-sm text-gray-500 font-mono">{mod.lessons.length} {mod.lessons.length === 1 ? 'lección' : 'lecciones'}</p>
+              </div>
+            </div>
+            <span class="w-8 h-8 rounded-lg bg-white/[0.04] flex items-center justify-center group-open:rotate-180 transition-transform duration-300">
+              <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </span>
+          </summary>
+
+          <div class="border-t border-white/[0.06] p-5 sm:p-6 bg-carbon-900">
+            <div class="flex items-center gap-2 mb-5">
+              <span class="w-2.5 h-2.5 rounded-full bg-terminal-red/60"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-terminal-yellow/60"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-terminal-green/60"></span>
+              <span class="text-[11px] text-gray-600 font-mono ml-2">modulo-{mod.num}.md</span>
+            </div>
+
+            <div class="space-y-6">
+              {mod.lessons.map((lesson) => (
+                <div>
+                  <h4 class="font-semibold text-sm text-amber-400 mb-3 flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                    {lesson.name}
+                  </h4>
+                  <ul class="space-y-2 ml-6">
+                    {lesson.points.map((point) => (
+                      <li class="flex items-start gap-2 text-sm text-gray-400">
+                        <span class="text-violet-500/60 mt-0.5 font-mono text-xs">▸</span>
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+
+            {mod.keyNote && (
+              <div class="mt-6 p-4 rounded-xl bg-amber-500/5 border border-amber-500/10">
+                <p class="text-sm text-amber-300/80 flex items-start gap-2">
+                  <span class="text-amber-500 mt-0.5">💡</span>
+                  {mod.keyNote}
+                </p>
+              </div>
+            )}
+          </div>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <!-- ═══ COMPARATIVA DE PLANES ═══ -->
+  <section class="border-t border-white/[0.06] py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="flex items-center gap-3 mb-10 observe-fade">
+        <div class="w-8 h-8 rounded-lg bg-terminal-green/10 flex items-center justify-center">
+          <span class="text-terminal-green text-sm font-bold">$</span>
+        </div>
+        <h2 class="text-2xl font-bold tracking-tight">Comparativa de Planes</h2>
+      </div>
+
+      <div class="observe-fade overflow-x-auto rounded-2xl border border-white/[0.06] bg-carbon-800">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-white/[0.06]">
+              <th class="text-left p-4 text-gray-400 font-mono text-xs">Feature</th>
+              <th class="text-center p-4 text-gray-400 font-mono text-xs">Free</th>
+              <th class="text-center p-4 text-amber-400 font-mono text-xs">Pro ($20/mes)</th>
+              <th class="text-center p-4 text-violet-400 font-mono text-xs">Teams ($30/usr)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {plans.map((plan, i) => (
+              <tr class={`border-b border-white/[0.04] ${i % 2 === 0 ? 'bg-carbon-900/30' : ''}`}>
+                <td class="p-4 text-gray-300 text-sm">{plan.feature}</td>
+                <td class="p-4 text-center">
+                  {plan.free
+                    ? <span class="text-terminal-green">✓</span>
+                    : <span class="text-gray-600">—</span>}
+                </td>
+                <td class="p-4 text-center">
+                  {plan.pro
+                    ? <span class="text-terminal-green">✓</span>
+                    : <span class="text-gray-600">—</span>}
+                </td>
+                <td class="p-4 text-center">
+                  {plan.teams
+                    ? <span class="text-terminal-green">✓</span>
+                    : <span class="text-gray-600">—</span>}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ANTHROPIC ACADEMY ═══ -->
+  <section class="border-t border-white/[0.06] py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="flex items-center gap-3 mb-10 observe-fade">
+        <div class="w-8 h-8 rounded-lg bg-violet-500/10 flex items-center justify-center">
+          <span class="text-violet-400 text-sm font-bold">🎓</span>
+        </div>
+        <h2 class="text-2xl font-bold tracking-tight">Anthropic Academy — 13 Cursos</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4 observe-fade">
+        <div class="rounded-2xl border border-white/[0.06] bg-carbon-800 p-6">
+          <h3 class="font-semibold text-amber-400 mb-4 text-sm font-mono">Para todos (sin código)</h3>
+          <ul class="space-y-3">
+            {academyCourses.filter(c => !c.tech).map((c) => (
+              <li class="flex items-center gap-3 text-sm text-gray-400">
+                <span class="text-amber-500/60 font-mono text-xs">▸</span>
+                <span>{c.name}</span>
+                {c.badge && <span class="text-[10px] px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-400 font-mono">{c.badge}</span>}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="rounded-2xl border border-white/[0.06] bg-carbon-800 p-6">
+          <h3 class="font-semibold text-terminal-blue mb-4 text-sm font-mono">Para desarrolladores (Python/CLI)</h3>
+          <ul class="space-y-3">
+            {academyCourses.filter(c => c.tech).map((c) => (
+              <li class="flex items-center gap-3 text-sm text-gray-400">
+                <span class="text-terminal-blue/60 font-mono text-xs">▸</span>
+                {c.name}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-8 text-center observe-fade">
+        <a href="https://anthropic.skilljar.com/claude-101/383389" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-semibold shadow-lg shadow-amber-500/20 transition-all duration-300" id="cta-academy">
+          Acceder a Anthropic Academy ↗
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
