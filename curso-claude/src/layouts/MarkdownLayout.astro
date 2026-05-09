@@ -1,0 +1,33 @@
+---
+import Layout from './Layout.astro';
+
+const { frontmatter } = Astro.props;
+const title = frontmatter.title || 'Lección de Claude 101';
+---
+
+<Layout title={title}>
+  <!-- ═══ HEADER LECCIÓN ═══ -->
+  <section class="border-b border-white/[0.06] bg-carbon-900/50 py-8 sm:py-12 relative overflow-hidden">
+    <div class="absolute inset-0 bg-mesh-amber pointer-events-none opacity-50"></div>
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 relative">
+      <a href="/manual" class="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-amber-400 mb-6 transition-colors font-mono">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+        Volver al Manual
+      </a>
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-2">{title}</h1>
+      <div class="flex items-center gap-2 text-xs font-mono text-gray-500">
+        <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+        Anthropic Academy
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONTENIDO MARKDOWN ═══ -->
+  <section class="py-12 sm:py-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <div class="prose prose-invert prose-amber max-w-none prose-pre:bg-carbon-900 prose-pre:border prose-pre:border-white/[0.06] prose-a:text-amber-400 hover:prose-a:text-amber-300 prose-img:rounded-xl prose-img:border prose-img:border-white/[0.06] prose-hr:border-white/[0.06]">
+        <slot />
+      </div>
+    </div>
+  </section>
+</Layout>

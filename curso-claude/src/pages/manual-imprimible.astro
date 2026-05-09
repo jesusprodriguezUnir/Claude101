@@ -1,0 +1,110 @@
+---
+const leccionesObj = import.meta.glob('./lecciones/*.md', { eager: true });
+const lecciones = Object.values(leccionesObj);
+
+// Ordenar por el número al principio del nombre de archivo
+const sortedLecciones = lecciones.sort((a, b) => {
+  const fileA = a.file.split('/').pop() || '';
+  const fileB = b.file.split('/').pop() || '';
+  const numA = parseInt(fileA.split('-')[0], 10);
+  const numB = parseInt(fileB.split('-')[0], 10);
+  return numA - numB;
+});
+---
+
+<!doctype html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manual Completo Claude 101 - PDF</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Estilos de impresión */
+    @media print {
+      @page {
+        margin: 2cm;
+        size: A4;
+      }
+      body {
+        background: #0c0c0c !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .page-break {
+        page-break-before: always;
+        break-before: page;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-carbon-950 text-gray-100 font-sans antialiased pb-20">
+
+  <!-- Header No-Print -->
+  <div class="no-print sticky top-0 z-50 border-b border-white/[0.06] bg-carbon-950/80 backdrop-blur-xl py-4">
+    <div class="max-w-4xl mx-auto px-6 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center">
+          <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M8 9l3 3-3 3m5 0h3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="text-sm text-gray-400 font-medium">Vista de impresión del manual</div>
+      </div>
+      <div class="flex gap-3">
+        <a href="/manual" class="text-sm px-4 py-2 rounded-lg border border-white/[0.06] bg-carbon-800 text-white hover:bg-carbon-700 transition-colors font-medium">Volver</a>
+        <button onclick="window.print()" class="text-sm px-4 py-2 rounded-lg bg-amber-600 text-white hover:bg-amber-500 transition-colors font-medium shadow-lg shadow-amber-500/20 flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+          Imprimir / Guardar PDF
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Portada del Manual -->
+  <div class="max-w-4xl mx-auto px-6 py-32 text-center">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-amber-500/20 bg-amber-500/5 text-amber-400 text-sm font-medium mb-8">
+      Anthropic Academy
+    </div>
+    <h1 class="text-5xl sm:text-6xl font-extrabold tracking-tight mb-6">
+      Manual del Curso<br/>
+      <span class="text-amber-500">Claude 101</span>
+    </h1>
+    <p class="text-gray-400 max-w-xl mx-auto text-lg">
+      Recopilación completa de las 13 lecciones del curso oficial en español.
+    </p>
+  </div>
+
+  <!-- Contenido de las lecciones -->
+  <div class="max-w-4xl mx-auto px-6">
+    {sortedLecciones.map((leccion, index) => {
+      const Content = leccion.Content;
+      return (
+        <div class={`page-break py-16 ${index > 0 ? 'border-t border-white/[0.06]' : ''}`}>
+          <!-- Encabezado de la lección -->
+          <div class="mb-10 pb-8 border-b border-white/[0.06]">
+            <div class="text-amber-500 font-mono text-sm mb-3 font-semibold">LECCIÓN {index + 1}</div>
+            <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">{leccion.frontmatter.title}</h2>
+          </div>
+          
+          <!-- Markdown Renderizado -->
+          <div class="prose prose-invert prose-amber max-w-none prose-pre:bg-carbon-900 prose-pre:border prose-pre:border-white/[0.06] prose-a:text-amber-400 hover:prose-a:text-amber-300 prose-img:rounded-xl prose-img:border prose-img:border-white/[0.06] prose-hr:border-white/[0.06] prose-headings:tracking-tight">
+            <Content />
+          </div>
+        </div>
+      );
+    })}
+  </div>
+
+  <script>
+    // Instrucciones en consola para asegurar el fondo
+    console.log("Para asegurar que los fondos oscuros se impriman correctamente en PDF, activa la opción 'Gráficos de fondo' o 'Background graphics' en el cuadro de diálogo de impresión.");
+  </script>
+</body>
+</html>
