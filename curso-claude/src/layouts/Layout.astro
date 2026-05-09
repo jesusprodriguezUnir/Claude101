@@ -79,6 +79,16 @@ const currentPath = Astro.url.pathname;
                id="nav-glosario">
               Glosario
             </a>
+            <a href="/interactuar" 
+               class:list={[
+                 "px-3 py-1.5 rounded-lg transition-all duration-200 bg-gradient-to-r from-amber-500/20 to-amber-700/20 border border-amber-500/20",
+                 currentPath === '/interactuar' || currentPath === '/interactuar/' 
+                   ? "text-amber-400 font-medium border-amber-500/40" 
+                   : "text-amber-200/70 hover:text-amber-400 hover:bg-amber-500/30"
+               ]}
+               id="nav-interactuar">
+              ✨ Interactuar
+            </a>
           </div>
         </div>
       </div>

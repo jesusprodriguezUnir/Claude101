@@ -1,0 +1,35 @@
+---
+import Layout from "../layouts/Layout.astro";
+import NotebookChat from "../components/NotebookChat.astro";
+---
+
+<Layout title="Interactuar - Asistente Claude 101">
+  <!-- Hero -->
+  <section class="relative overflow-hidden py-16">
+    <div class="absolute inset-0 bg-mesh-amber pointer-events-none"></div>
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="font-mono text-xs text-gray-600 mb-3 animate-fade-in">
+        <span class="text-amber-500">~</span>/interactuar
+      </div>
+      <h1
+        class="text-4xl sm:text-5xl font-extrabold tracking-tight mb-3 animate-fade-in"
+        style="animation-delay:0.1s"
+      >
+        Interactuar con <span class="text-amber-400">NotebookLM</span>
+      </h1>
+      <p
+        class="text-gray-500 max-w-lg animate-fade-in"
+        style="animation-delay:0.2s"
+      >
+        Haz preguntas sobre los apuntes y obtén respuestas contextualizadas de Gemini.
+      </p>
+    </div>
+  </section>
+
+  <!-- Chat Component -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 pb-20">
+    <div class="observe-fade" style="transition-delay: 200ms">
+      <NotebookChat />
+    </div>
+  </section>
+</Layout>

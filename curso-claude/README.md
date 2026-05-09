@@ -63,6 +63,26 @@ Para ejecutar este proyecto en tu máquina local:
    npm run build
    ```
 
+## 🔑 Variables de Entorno (API Key)
+
+El proyecto incluye un asistente virtual tipo *NotebookLM* (RAG) en la ruta `/interactuar`. Para que esto funcione, necesitas una API Key de Google Gemini:
+
+1. Renombra el archivo `.env.example` a `.env` (o crea uno nuevo).
+2. Añade tu API Key de Gemini:
+   ```env
+   GEMINI_API_KEY=tu_api_key_aqui
+   ```
+*(Nota: El archivo `.env` está ignorado en git por seguridad para no subir tus claves privadas).*
+
+## ☁️ Despliegue en Vercel
+
+Dado que el proyecto utiliza Server-Side Rendering (SSR) con un endpoint de API (`/api/chat.ts`), la configuración en Vercel requiere un paso adicional:
+
+1. Importa tu repositorio en el [Dashboard de Vercel](https://vercel.com/new).
+2. Antes de desplegar, ve a la sección **Environment Variables**.
+3. Añade la variable `GEMINI_API_KEY` con tu clave de la API de Google.
+4. Haz clic en **Deploy**. Vercel utilizará automáticamente el adaptador de Astro para desplegar correctamente las funciones Serverless.
+
 ## 🎨 Diseño y Estética
 
 El proyecto utiliza un sistema de diseño "Premium Dark" inspirado en la identidad visual de Anthropic y herramientas de IA de vanguardia:
