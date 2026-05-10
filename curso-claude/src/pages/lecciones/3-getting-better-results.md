@@ -58,7 +58,7 @@ La fluidez en IA es la capacidad de colaborar eficazmente con estas herramientas
 Para profundizar en estas técnicas, visualiza estos videos oficiales de Anthropic:
 
 *   **[Detrás de la sugerencia: Consejos para usar Claude](https://www.youtube.com/watch?v=OfUn6HjwXhI)** — Entiende la lógica interna de Claude y cómo mejorar tus prompts.
-*   **[Incitación 101: Código con Claude](https://www.youtube.com/watch?v=ysPbXH0LpIE)** — Guía fundamental para trabajar con código y prompts técnicos.
+*   **[Prompting 101: Código con Claude](https://www.youtube.com/watch?v=ysPbXH0LpIE&t=14s)** — Guía fundamental para trabajar con código y prompts técnicos.
 
 > [!TIP]
 > Realizar evaluaciones ligeras te ayuda a desarrollar la intuición sobre dónde Claude añade más valor y dónde necesita más guía humana.

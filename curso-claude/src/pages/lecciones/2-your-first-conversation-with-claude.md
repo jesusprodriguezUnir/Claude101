@@ -68,5 +68,12 @@ Dos funciones clave ayudan a que Claude aprenda cómo trabajas:
 
 ---
 
+# 📺 Recursos en Video (Obligatorios)
+Para complementar lo aprendido, visualiza este video sobre los fundamentos de la escritura de prompts:
+
+*   **[Prompting 101: Código con Claude](https://www.youtube.com/watch?v=ysPbXH0LpIE&t=14s)** — Guía fundamental para entender la lógica de los prompts y cómo estructurarlos.
+
+---
+
 # 💡 Ponlo en Práctica
 Antes de seguir, intenta pedirle algo a Claude. Si no sabes por dónde empezar, visita la **Galería de Casos de Uso** para inspirarte.
